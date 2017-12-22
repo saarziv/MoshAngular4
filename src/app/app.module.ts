@@ -9,7 +9,7 @@ import { CoursesService } from './courses.service';
 import { CoursesComponent } from './courses.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, Component } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CourseComponent } from './course/course.component';
@@ -59,7 +59,24 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      {
+          path: '', component: HomeComponent
+      },
+      {
+        path: 'followers/:id/:login', component: GithubProfileComponent
+      },
+      {
+        path: 'followers', component: GithubFollowersComponent
+      },
+      {
+        path: 'posts', component: PostsComponent
+      },
+      {
+        path: '**', component: NotFoundComponent
+      }
+    ])
   ],
   providers: [
     PostService,
